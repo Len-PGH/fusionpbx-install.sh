@@ -9,17 +9,26 @@ cd "$(dirname "$0")"
 . ../environment.sh
 
 apt-get update && apt-get install -y --force-yes curl memcached haveged apt-transport-https
+
 if [ ."$cpu_architecture" = ."arm" ]; then
-        echo "deb https://repo.fusionpbx.com/armhf jessie 1.6.20" > /etc/apt/sources.list.d/freeswitch.list
-        curl https://repo.fusionpbx.com/public.key | apt-key add -
-else
-        if [ ."$os_codename" = ."stretch" ]; then
+	curl https://repo.fusionpbx.com/public.key | apt-key add -
+	if [ ."$os_codename" = ."jessie" ]; then
+                echo "deb https://repo.fusionpbx.com/armhf jessie 1.6.20" > /etc/apt/sources.list.d/freeswitch.list
+	fi
+	if [ ."$os_codename" = ."stretch" ]; then
+                echo "deb https://repo.fusionpbx.com/armhf stretch 1.8.2" > /etc/apt/sources.list.d/freeswitch.list
+        fi
+	
+fi
+
+
+if [ ."$os_codename" = ."stretch" ]; then
                 wget -qO - http://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg | apt-key add -
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.8/ stretch main" > /etc/apt/sources.list.d/freeswitch.list      
-        else
+else
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
                 curl http://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg | apt-key add -
-        fi
+
 fi
 apt-get update
 apt-get install -y --force-yes gdb ntp
