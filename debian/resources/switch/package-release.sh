@@ -36,7 +36,7 @@ if [ ."$cpu_architecture" = ."amd64"] && [ ."$os_codename" = ."jessie" ]; then
 	
 fi
 
-if [ ."$cpu_architecture" = ."1386"] && [ ."$os_codename" = ."jessie" ]; then
+if [ ."$cpu_architecture" = ."i386"] && [ ."$os_codename" = ."jessie" ]; then
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
                 curl http://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg | apt-key add -
 	else
