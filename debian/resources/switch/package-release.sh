@@ -12,12 +12,12 @@ apt-get update && apt-get install -y --force-yes curl memcached haveged apt-tran
 
 
 
-if [ ."$cpu_architecture" = ."arm" && ."$os_codename" = ."jessie"  ]; then
+if [ ."$cpu_architecture" = ."arm"] && [ ."$os_codename" = ."jessie" ]; then
 	curl https://repo.fusionpbx.com/public.key | apt-key add -
 	echo "deb https://repo.fusionpbx.com/armhf jessie 1.6.20" > /etc/apt/sources.list.d/freeswitch.list
 	
 	else
-	if [ ."$cpu_architecture" = ."arm" && ."$os_codename" = ."stretch" ]; then
+	 if [ ."$cpu_architecture" = ."arm" ] && [ ."$os_codename" = ."stretch" ]; then
 		curl https://repo.fusionpbx.com/public.key | apt-key add -
                 echo "deb https://repo.fusionpbx.com/armhf stretch 1.8.2" > /etc/apt/sources.list.d/freeswitch.list
         fi
@@ -25,24 +25,22 @@ if [ ."$cpu_architecture" = ."arm" && ."$os_codename" = ."jessie"  ]; then
 fi
 
 
-if [ ."$cpu_architecture" = ."amd64" ]; then
-	elif [ ."$os_codename" = ."jessie" ]; then
+if [ ."$cpu_architecture" = ."amd64"] && [ ."$os_codename" = ."jessie" ]; then
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
                 curl http://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg | apt-key add -
 	else
-	if [ ."$os_codename" = ."stretch" ]; then
+	if [ ."$cpu_architecture" = ."amd64" ] && [ ."$os_codename" = ."stretch" ]; then
                 wget -qO - http://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg | apt-key add -
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.8/ stretch main" > /etc/apt/sources.list.d/freeswitch.list
         fi
 	
 fi
 
-if [ ."$cpu_architecture" = ."i386" ]; then
-	elif [ ."$os_codename" = ."jessie" ]; then
+if [ ."$cpu_architecture" = ."1386"] && [ ."$os_codename" = ."jessie" ]; then
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list
                 curl http://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg | apt-key add -
 	else
-	if [ ."$os_codename" = ."stretch" ]; then
+	if [ ."$cpu_architecture" = ."i386" ] && [ ."$os_codename" = ."stretch" ]; then
                 wget -qO - http://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg | apt-key add -
                 echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.8/ stretch main" > /etc/apt/sources.list.d/freeswitch.list
         fi
